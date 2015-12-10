@@ -3,7 +3,7 @@
   <%= f.text_field :title %>
   <%= f.label :location %>
   <%= f.text_field :location %>
-  <%= f.label :company %>
+  <%= f.label :company_id %>
   <%= f.collection_select(:company_id, @companies, :id, :name) %>
   <%= f.label :category %>
   <%= f.text_field :category %>

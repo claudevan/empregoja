@@ -2,12 +2,13 @@ require 'rails_helper'
 
 feature 'User creates a new job' do
   scenario 'successfully' do
-    visit new_job_path
 
     company = Company.create(name: 'Campus Code',
                             location: 'São Paulo',
                             mail: 'contato@campus.com.br',
                             phone: '2369-3476')
+
+visit new_job_path
 
     job = Job.new(title: 'Dev Master',
                   location: 'Rio de Janeiro',
