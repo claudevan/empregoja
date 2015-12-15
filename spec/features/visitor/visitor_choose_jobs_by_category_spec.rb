@@ -58,7 +58,7 @@ feature 'Visitor choose jobs by category' do
     click_on category_2.name
 
     expect(page).to have_content category_2.name
-    
+
     expect(page).not_to have_content job.title
     expect(page).not_to have_content job.category.name
     expect(page).not_to have_content job.description

@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :set_companies, only: [:new, :create]
+  before_action :set_companies, :set_categories, only: [:new, :create]
 
   def show
     @job = Job.find(params[:id])
@@ -24,9 +24,13 @@ class JobsController < ApplicationController
     @companies = Company.all
   end
 
+  def set_categories
+    @categories = Category.all
+  end
+
   def job_params
     params.require(:job)
-      .permit(:title, :location, :category, :description, :featured,
+      .permit(:title, :location, :category_id, :description, :featured,
              :company_id)
   end
 end
