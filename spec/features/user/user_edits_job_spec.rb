@@ -27,7 +27,7 @@ feature 'User creates a new job' do
 
     fill_in 'Title',       with: 'Dev Mais que Master'
     fill_in 'Location',    with: 'Recife'
-    select  new_company
+    select  new_company.name
     select  new_category.name
     fill_in 'Description', with: 'Vaga para Dev Mais que Master para o Quickstart'
 
@@ -64,10 +64,10 @@ feature 'User creates a new job' do
     fill_in 'Description', with: 'Vaga para Dev Mais que Master para o Quickstart'
     check   'Featured'
 
-    click_on 'Criar Vaga'
+    click_on 'Atualizar Vaga'
 
     expect(page).to have_content 'Dev Mais que Master'
-    expect(page).to have_content 'São Paulo'
+    expect(page).to have_content 'Recife'
     expect(page).to have_content 'Desenvolvedor'
     expect(page).to have_content 'Campus Code'
     expect(page).to have_content 'Vaga para Dev Mais que Master para o Quickstart'
@@ -76,4 +76,3 @@ feature 'User creates a new job' do
 
 
 end
-
