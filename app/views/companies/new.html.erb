@@ -1,3 +1,12 @@
+<div id="errors">
+<% if @company.errors.any? %>
+<%= flash[:error] %>
+<ul>
+  <% @company.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
 <%= form_for @company do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
