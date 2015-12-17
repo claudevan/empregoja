@@ -1,6 +1,25 @@
-<span class="error_message"><%= flash[:warning] %></span>
-<%= form_for @category do |f| %>
-  <%= f.label :name  %>
-  <%= f.text_field :name  %>
-  <%= f.submit 'Criar Categoria' %>
-<% end %>
+<h3>Nova Categoria</h3>
+
+<div class="row">
+  <div class="col-md-12">
+    <% if flash[:warning] %>
+      <div class="alert alert-danger" role="alert">
+        <span class="error_message"><%= flash[:warning] %></span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for @category do |f| %>
+
+      <div class="form-group">
+        <%= f.label :name  %>
+        <%= f.text_field :name, {class:"form-control"} %>
+      </div>
+
+      <%= f.submit 'Criar Categoria', {class:"btn btn-primary"}  %>
+    <% end %>
+  </div>
+</div>

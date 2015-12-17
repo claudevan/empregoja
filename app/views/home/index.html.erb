@@ -1,27 +1,53 @@
-<section id="jobs">
-  <% @jobs.each do |job| %>
-    <div class="jobs">
-      <h3><%= job.title %></h1>
-      <p><%= job.location %></p>
-      <p><%= job.company.name %></p>
-      <p><%= job.category.name %></p>
-      <% if job.recent? %>
-        <p><em>Novidade</em></p>
-      <% end %>
-      <%= link_to 'Ver mais', job %>
-    </div>
-  <% end %>
-</section>
-<aside>
-  <% @companies.each do |company| %>
-    <%= link_to company.name, company %>
-    <% if company.premium? %>
-      <p><em>'Empresa Premium'</em></p>
-    <% end  %>
-  <% end %>
-</aside>
-<aside>
-  <% @categories.each do |category| %>
-    <%= link_to category.name, category %>
-  <% end %>
-</aside>
+<div class="row">
+  <div class="col-md-8">
+    <section id="jobs">
+      <div class="row">
+        <% @jobs.each do |job| %>
+          <div class="col-md-6">
+            <div class="jobs panel panel-primary">
+              <div class="panel-heading"><%= job.title %></div>
+              <div class="panel-body">
+                <p><%= job.location %></p>
+                <p><%= job.company.name %></p>
+                <p><%= job.category.name %></p>
+                <% if job.recent? %>
+                  <p class="text-success">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true">
+                      Novidade
+                    </span>
+                  </p>
+                <% end %>
+                <%= link_to 'Ver mais', job %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
+  </div>
+
+  <div class="col-md-4 hidden-sm hidden-xs">
+
+    <aside>
+      <h4>Empresas</h4>
+      <dl>
+        <% @companies.each do |company| %>
+          <dt> <%= link_to company.name, company %> </dt>
+          <% if company.premium? %>
+            <dd> <p><em>'Empresa Premium'</em></p> </dd>
+          <% end  %>
+        <% end %>
+      </dl>
+    </aside>
+
+    <aside>
+      <h4>Categorias</h4>
+      <dl>
+        <% @categories.each do |category| %>
+          <dt> <%= link_to category.name, category %> </dt>
+        <% end %>
+      </dl>
+    </aside>
+  </div>
+
+</div>
