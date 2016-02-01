@@ -3,6 +3,6 @@ class Company < ActiveRecord::Base
   validates :name, :location, :mail, :phone, presence: true
 
   def premium?
-    self.jobs.count >= 5 
+    jobs.count >= 5
   end
 end
