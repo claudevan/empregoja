@@ -7,3 +7,6 @@
 <% if @job.featured? %>
   <strong>Vaga em Destaque</strong>
 <% end %>
+<% if @job.expired? %>
+  <strong>Vaga Expirada</strong>
+<% end %>

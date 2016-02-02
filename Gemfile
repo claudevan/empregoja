@@ -20,6 +20,7 @@ group :development, :test do
   gem 'simplecov', require: false
   gem 'capybara'
   gem 'byebug'
+  gem 'factory_girl'
 end
 
 group :development do
