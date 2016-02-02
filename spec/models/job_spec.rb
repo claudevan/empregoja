@@ -29,4 +29,36 @@ RSpec.describe Job, type: :model do
       end
     end
   end
+
+  describe '#expired?' do
+    context 'Created 90 days ago' do
+      it 'is expired' do
+        job = nil
+        travel_to 90.days.ago do
+          job = create_job
+        end
+        expect(job).to be_expired
+      end
+    end
+
+    context 'Created 91 days ago' do
+      it 'is expired' do
+        job = nil
+        travel_to 91.days.ago do
+          job = create_job
+        end
+        expect(job).to be_expired
+      end
+    end
+
+    context 'Created 89 days ago' do
+      it 'not is expired' do
+        job = nil
+        travel_to 89.days.ago do
+          job = create_job
+        end
+        expect(job).not_to be_expired
+      end
+    end
+  end
 end

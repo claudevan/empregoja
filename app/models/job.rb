@@ -1,6 +1,6 @@
 class Job < ActiveRecord::Base
   DAYS_TO_BE_RECENT = 5.days
-  DAYS_TO_EXPIRE = 90.days.ago
+  DAYS_TO_EXPIRE = 90.days
   belongs_to :company
   belongs_to :category
 
@@ -11,10 +11,10 @@ class Job < ActiveRecord::Base
   end
 
   def self.not_expired
-    where('created_at >= ?', DAYS_TO_EXPIRE)
+    where('created_at >= ?', DAYS_TO_EXPIRE.ago)
   end
 
   def expired?
-    self.created_at <  DAYS_TO_EXPIRE
+    Time.zone.now > (created_at + DAYS_TO_EXPIRE)
   end
 end
