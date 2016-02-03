@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   before_action :set_collections, only: [:new, :create, :edit]
   before_action :set_job, only: [:edit, :show, :update]
+  before_action :authenticate_user!, except: [:show]
 
   def show
   end

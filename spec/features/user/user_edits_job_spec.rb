@@ -22,6 +22,9 @@ feature 'User creates a new job' do
                      company: company,
                      category: category)
 
+    user = User.create(email:'fulano@email.com', password:'123_ate_mil')
+    login_as(user, scope: :user)
+
     visit edit_job_path(job)
 
     fill_in 'Title',       with: 'Dev Mais que Master'
@@ -56,6 +59,9 @@ feature 'User creates a new job' do
                      category: category,
                      featured:    false)
 
+    user = User.create(email:'fulano@email.com', password:'123_ate_mil')
+    login_as(user, scope: :user)
+
     visit edit_job_path(job)
 
     fill_in 'Title',       with: 'Dev Mais que Master'
@@ -75,5 +81,32 @@ feature 'User creates a new job' do
     expect(page)
       .to have_content 'Vaga para Dev Mais que Master para o Quickstart'
     expect(page).to have_content 'Vaga em Destaque'
+  end
+
+  scenario 'and visit new user page if visitor are not authenticated' do
+
+    company = Company.create(name:    'Campus Code',
+                             location: 'São Paulo',
+                             mail:     'contato@campuscode.com.br',
+                             phone:    '2369-3476')
+
+    new_company = Company.create(name:     'Code Campus',
+                                 location: 'Refice',
+                                 mail:     'contato@codecampus.com.br',
+                                 phone:    '1111-5555')
+
+    category = Category.create(name: 'Desenvolvedor')
+
+    new_category = Category.create(name: 'Dev Ninja')
+
+    job = Job.create(title: 'Vaga de Dev',
+                     description: 'Dev Junior Rails com ao menos um projeto',
+                     location: 'São Paulo',
+                     company: company,
+                     category: category)
+
+      visit edit_job_path job
+
+      expect(page).to have_current_path(new_user_session_path)
   end
 end
