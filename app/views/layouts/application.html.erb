@@ -13,6 +13,12 @@
           <div class="navbar-header">
             <%= link_to "Emprego Já", root_path, {class:"navbar-brand"} %>
           </div>
+          <ul class="nav navbar-nav navbar-right">
+          <% unless user_signed_in?  %>
+              <li> <%= link_to "Entrar", new_user_session_path %> </li>
+          <% else %>
+              <li> <%= "Bem Vindo #{current_user.email}"%> </li>
+          <% end %>
         </div>
       </nav>
       <%= yield %>
